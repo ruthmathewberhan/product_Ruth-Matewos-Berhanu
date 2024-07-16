@@ -15,8 +15,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Stack } from "@mui/material";
 
 const ExpandMore = styled((props) => {
@@ -30,7 +30,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export default function ProductCard() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -39,7 +39,7 @@ export default function RecipeReviewCard() {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-                    <CardHeader
+      <CardHeader
         title="Shrimp and Chorizo Paella"
         subheader="# tag 1, # tag 2"
       />
