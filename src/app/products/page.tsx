@@ -1,6 +1,7 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import ProductCard from "../components/product-card";
+import Notify from "../components/notify";
 
 
 type Products = {
@@ -15,46 +16,54 @@ type Products = {
 const GetProduct = async () => {
 
   const [product, setProduct] = useState<Products[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+
+  const [severity, setSeverity] = useState("");
+  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleNotifyClose = ( reason : string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
 
   const fetchProducts = async () => {
     try {
       const response = await fetch('https://dummyjson.com/products');
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        setMessage("Network response was not ok");
+        setSeverity("error");
+
       }
       const data = await response.json();
       setProduct(data.products);
     } catch (err) {
       if (err instanceof Error) {
-        setError(err.message);
+        setMessage(`Error updating product : ${err.message} `);
+        setSeverity("error");
       } else {
-        setError("An unknown error occurred");
+        setMessage("An unknown error occurred");
+        setSeverity("error");
+        setOpen(true)
       }
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  console.log(product)
-
-  // useEffect(() => {
-  //   handleInitialData()
-  // }, [])
 
   return (
     <>
       <ProductCard products={product} />
-      {/* {product.map((product: Products) => (
-      <h1>
-        {product.title}
-      </h1>
-      ))} */}
+      <Notify
+        open={open}
+        message={message}
+        severity={severity}
+        handleClose={handleNotifyClose}
+      />
     </>
   );
 };
