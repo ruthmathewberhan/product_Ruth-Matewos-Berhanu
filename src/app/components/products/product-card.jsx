@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Stack, Grid, Box, Button } from "@mui/material";
 import Rating from "@mui/material/Rating";
-import MenuAppBar from "./app-bar";
+import MenuAppBar from "../common/app-bar";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { alpha } from "@mui/material/styles";
@@ -127,37 +127,43 @@ export default function ProductCard({ products }) {
           spacing={2}
           sx={{ mb: 2 }}
         >
-          <Box sx={{ ml: 5}}>
+          <Box sx={{ ml: 5 }}>
             <AddProduct />
           </Box>
 
-          <Box sx={{ mr: 5}}>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </Search>
+          <Box sx={{ mr: 5 }}>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </Search>
           </Box>
         </Stack>
         <Grid container spacing={2}>
           {currentItems.map((product) => (
-            <Grid item xs={12} sm={6} md={3} key={product.id}>
+            <Grid item xs={12} sm={6} md={3} key={product ? product.id : 1}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardHeader
-                  title={product.title}
-                  subheader={product ? (product.tags ? product.tags.map((tag) => ` #${tag} `): '') : ""}
+                  title={product ? product.title : 'title'}
+                  subheader={
+                    product
+                      ? product.tags
+                        ? product.tags.map((tag) => ` #${tag} `)
+                        : ""
+                      : ""
+                  }
                 />
                 <CardMedia
                   component="img"
                   height="250"
-                  // image={`/static/images/${product.id}.jpg`}
-                  image={`/static/images/3.jpg`}
+                  image={`/static/images/${product ? product.id : 3}.jpg`}
+                  // image={`/static/images/3.jpg`}
                   alt="Product image"
                 />
                 <CardContent>
@@ -168,33 +174,33 @@ export default function ProductCard({ products }) {
                     spacing={2}
                   >
                     <Typography variant="h6" color="text.secondary">
-                      {product.price}
+                      {product ? product.price : 10}
                     </Typography>
-                    <Rating name="read-only" value={product.rating} readOnly />
+                    <Rating name="read-only" value={product ? product.rating : 1} readOnly />
                   </Stack>
                 </CardContent>
                 <CardActions disableSpacing>
                   <Stack direction="row">
-                    <EditProduct id={product.id} />
-                    <DeleteProduct id={product.id} />
+                    <EditProduct id={product ? product.id : 1} />
+                    <DeleteProduct id={product ? product.id : 1} />
                   </Stack>
                   <ExpandMore
-                    expand={expandedItems[product.id]}
-                    onClick={() => handleExpandClick(product.id)}
-                    aria-expanded={expandedItems[product.id]}
+                    expand={expandedItems[product ? product.id : 1]}
+                    onClick={() => handleExpandClick(product ? product.id : 1)}
+                    aria-expanded={expandedItems[product ? product.id : 1]}
                     aria-label="show more"
                   >
                     <ExpandMoreIcon />
                   </ExpandMore>
                 </CardActions>
                 <Collapse
-                  in={expandedItems[product.id]}
+                  in={expandedItems[product ? product.id : 1]}
                   timeout="auto"
                   unmountOnExit
                 >
                   <CardContent>
                     <Typography paragraph>Description:</Typography>
-                    <Typography paragraph>{product.description}</Typography>
+                    <Typography paragraph>{product ? product.description : 'Description'}</Typography>
                   </CardContent>
                 </Collapse>
               </Card>

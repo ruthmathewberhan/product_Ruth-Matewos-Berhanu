@@ -13,7 +13,7 @@ import {
   IconButton,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Notify from "./notify";
+import Notify from "../common/notify";
 
 const DeleteProduct = ({ id }) => {
   // notification field
@@ -105,12 +105,11 @@ const DeleteProduct = ({ id }) => {
           },
         }}
       >
-        <DialogTitle >
-          Delete Product
-        </DialogTitle>
+        <DialogTitle>Delete Product</DialogTitle>
         <DialogContent>
           <DialogContentText color="error">
-            This is an action with no return. Do you want to delete {product ? product.title : ""} ?
+            This is an action with no return. Do you want to delete{" "}
+            {product ? product.title : ""} ?
           </DialogContentText>
         </DialogContent>
         <DialogActions>

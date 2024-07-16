@@ -13,10 +13,9 @@ import {
   IconButton,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import Notify from "./notify";
+import Notify from "../common/notify";
 
 const EditProduct = ({ id }) => {
-
   // notification field
   const [product, setProduct] = useState();
   const [opens, setOpens] = useState(false);
@@ -64,7 +63,7 @@ const EditProduct = ({ id }) => {
 
   // to split the tags
   function splitAndAddToArray(str) {
-    const splitArray = str.split(',');
+    const splitArray = str.split(",");
     return splitArray;
   }
 
@@ -202,7 +201,13 @@ const EditProduct = ({ id }) => {
             type="tags"
             fullWidth
             variant="outlined"
-            defaultValue={product ? (product.tags ? product.tags.map((tag) => ` #${tag} `): '') : ""}
+            defaultValue={
+              product
+                ? product.tags
+                  ? product.tags.map((tag) => ` #${tag} `)
+                  : ""
+                : ""
+            }
           />
         </DialogContent>
         <DialogActions>

@@ -11,7 +11,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import Notify from "./notify";
+import Notify from "../common/notify";
 
 const AddProduct = () => {
   // notification field

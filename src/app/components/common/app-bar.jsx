@@ -22,8 +22,8 @@ export default function MenuAppBar() {
             m: 3,
           }}
         >
-          <Typography variant="h3" sx={{ flexGrow: 1, }}>
-            <i>Nuna</i>  <b>Products</b>
+          <Typography variant="h3" sx={{ flexGrow: 1 }}>
+            <i>Nuna</i> <b>Products</b>
           </Typography>
         </Toolbar>
       </AppBar>
