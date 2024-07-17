@@ -11,7 +11,6 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Stack, Grid, Box, Button } from "@mui/material";
 import Rating from "@mui/material/Rating";
-import MenuAppBar from "../common/app-bar";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { alpha } from "@mui/material/styles";
@@ -20,6 +19,7 @@ import { alpha } from "@mui/material/styles";
 import AddProduct from "./add-product";
 import EditProduct from "./edit-product";
 import DeleteProduct from "./delete-product";
+import MenuAppBar from "../common/app-bar";
 
 /**********************/
 
